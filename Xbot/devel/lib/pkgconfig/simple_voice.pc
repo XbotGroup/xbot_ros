@@ -1,0 +1,8 @@
+prefix=/home/howe/Xbot/devel
+
+Name: simple_voice
+Description: Description of simple_voice
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/howe/Xbot/devel/lib -lsimple_voice
+Requires: rospy

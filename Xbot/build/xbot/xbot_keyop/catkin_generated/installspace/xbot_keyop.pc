@@ -1,0 +1,8 @@
+prefix=/home/howe/Xbot/install
+
+Name: xbot_keyop
+Description: Description of xbot_keyop
+Version: 0.6.7
+Cflags: -I/home/howe/Xbot/install/include
+Libs: -L/home/howe/Xbot/install/lib -lxbot
+Requires: geometry_msgs std_srvs std_msgs roscpp ecl_exceptions ecl_threads ecl_time xbot_msgs

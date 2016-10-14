@@ -1,0 +1,8 @@
+prefix=/home/howe/Xbot/devel
+
+Name: camera_image
+Description: Description of camera_image
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/howe/Xbot/devel/lib -lcamera_image
+Requires: rospy

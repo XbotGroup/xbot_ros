@@ -1,0 +1,1 @@
+/usr/bin/c++       CMakeFiles/xbot_flasher.dir/flasher.cpp.o  -o /home/howe/Xbot/devel/lib/xbot_ftdi/xbot_flasher -rdynamic -lusb -lftdi 

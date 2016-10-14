@@ -1,0 +1,1 @@
+/usr/bin/c++       CMakeFiles/xbot_reset_device.dir/reset_device.cpp.o  -o /home/howe/Xbot/devel/lib/xbot_ftdi/xbot_reset_device -rdynamic -lusb 

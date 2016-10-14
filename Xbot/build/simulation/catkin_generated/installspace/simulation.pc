@@ -1,0 +1,8 @@
+prefix=/home/howe/Xbot/install
+
+Name: simulation
+Description: Description of simulation
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/howe/Xbot/install/lib 
+Requires: 

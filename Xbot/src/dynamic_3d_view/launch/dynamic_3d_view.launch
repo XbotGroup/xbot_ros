@@ -1,0 +1,11 @@
+<launch>
+	<param name="use_sim_time" value="false" />
+	<node pkg="dynamic_3d_view" type="init_global_3d_map" name="init_global_3d_map" output="screen"/>
+
+	<!--node pkg="dynamic_3d_view" type="put_obstacles.py" name="put_obstacles" output="screen"/-->
+	
+	<group ns="dynamic_3d_view">
+		<node pkg="dynamic_3d_view" type="dynamic_add_obstacles.py" name="dynamic_add_obstacles" output="screen" respawn="true" />
+	</group>
+  
+</launch>

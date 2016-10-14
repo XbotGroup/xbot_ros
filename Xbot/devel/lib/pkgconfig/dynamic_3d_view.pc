@@ -1,0 +1,8 @@
+prefix=/home/howe/Xbot/devel
+
+Name: dynamic_3d_view
+Description: Description of dynamic_3d_view
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/howe/Xbot/devel/lib 
+Requires: 

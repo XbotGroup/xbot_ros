@@ -1,0 +1,8 @@
+prefix=/home/howe/Xbot/devel
+
+Name: xbot
+Description: Description of xbot
+Version: 0.0.0
+Cflags: -I/home/howe/Xbot/src/xbot/xbot/driver
+Libs: -L/home/howe/Xbot/devel/lib -lxbot -lrobot_cmd -lrobot_frame -lrobot_serial
+Requires: roscpp rospy std_msgs

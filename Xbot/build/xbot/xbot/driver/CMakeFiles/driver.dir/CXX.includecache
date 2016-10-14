@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/howe/Xbot/src/xbot/xbot/driver/robot_frame.cpp
+robot_frame.h
+/home/howe/Xbot/src/xbot/xbot/driver/robot_frame.h
+string.h
+-
+stdio.h
+-
+
+/home/howe/Xbot/src/xbot/xbot/driver/robot_frame.h
+queue
+-
+

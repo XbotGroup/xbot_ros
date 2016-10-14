@@ -1,0 +1,17 @@
+<launch>
+	<param name="/use_sim_time" value="true" />
+
+
+	<node pkg="dynamic_3d_view" type="init_global_3d_map" name="init_global_3d_map" output="screen"/>
+
+	<group ns="dynamic_3d_view">
+		<node pkg="dynamic_3d_view" type="dynamic_add_obstacles.py" name="dynamic_add_obstacles" output="screen" respawn="true" />
+	</group>
+
+	<node name="map_server" pkg="map_server" type="map_server" args="$(find dynamic_3d_view)/map_2d/map_editor.yaml" />
+    
+
+    <!-- Load rviz -->
+  	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find dynamic_3d_view)/rviz/map_editor.rviz"/>
+  
+</launch>

@@ -1,0 +1,1 @@
+/usr/bin/c++       CMakeFiles/xbot_overwrite_serial_number.dir/overwrite_serial_number.cpp.o  -o /home/howe/Xbot/devel/lib/xbot_ftdi/xbot_overwrite_serial_number -rdynamic -lusb -lftdi 

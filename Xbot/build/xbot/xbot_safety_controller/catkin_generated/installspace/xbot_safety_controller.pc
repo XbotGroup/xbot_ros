@@ -1,0 +1,8 @@
+prefix=/home/howe/Xbot/install
+
+Name: xbot_safety_controller
+Description: Description of xbot_safety_controller
+Version: 0.6.7
+Cflags: -I/home/howe/Xbot/install/include
+Libs: -L/home/howe/Xbot/install/lib -lxbot_safety_controller_nodelet
+Requires: roscpp nodelet pluginlib std_msgs geometry_msgs xbot_msgs yocs_controllers ecl_threads

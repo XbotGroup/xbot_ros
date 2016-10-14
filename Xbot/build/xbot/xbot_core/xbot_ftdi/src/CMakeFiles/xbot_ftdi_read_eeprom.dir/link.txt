@@ -1,0 +1,1 @@
+/usr/bin/c++       CMakeFiles/xbot_ftdi_read_eeprom.dir/ftdi_read_eeprom.cpp.o  -o /home/howe/Xbot/devel/lib/xbot_ftdi/xbot_ftdi_read_eeprom -rdynamic -lftdi 

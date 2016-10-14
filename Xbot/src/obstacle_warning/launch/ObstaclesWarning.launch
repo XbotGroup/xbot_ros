@@ -1,0 +1,45 @@
+<launch>
+
+  <arg name="warning_marker_topic"                      default="/warning_marker" />
+  
+  <arg name="StopMoving_topic"                          default="/cmd_vel_mux/input/teleop" />
+  
+  <arg name="action_topic"                              default="move_base" />
+  
+  <arg name="turtlebot_position_topic"                  default="turtlebot_position_in_map" />
+  
+  <arg name="detector_resolution"                       default='20' />
+  
+  <arg name="detector_radius"                           default='0.35' />
+
+  <arg name="warning_height"                            value='1.5' />
+  
+  <arg name="xcorrection"                               default='-0.01' />
+
+  <arg name="ycorrection"                               default='-0.13' />
+  
+  <!--stopmove_edit.py-->  
+  <node pkg="obstacle_warning" type="DetectorStopMove.py" name="DetectorStopMove"  output="screen">
+   
+   <param name='warning_marker_topic'                   value="$(arg warning_marker_topic)" />
+   
+   <param name="StopMoving_topic"                       value="$(arg StopMoving_topic)" />
+   
+   <param name='action_topic'                           value="$(arg action_topic)" />
+   
+   <param name='turtlebot_position_topic'               value="$(arg turtlebot_position_topic)" />
+  
+   <param name='detector_resolution'                    value="$(arg detector_resolution)" />
+   
+   <param name='detector_radius'                        value="$(arg detector_radius)" />
+   
+   <param name = "warning_height"                       value = "$(arg warning_height)" />
+   
+   <param name = "xcorrection"                          value = "$(arg xcorrection)" />
+   
+   <param name = "ycorrection"                          value = "$(arg ycorrection)" />
+   
+  </node>
+  
+</launch>
+

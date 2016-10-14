@@ -1,0 +1,6 @@
+<launch> 
+ <node pkg="camera_image" type="camera_image.py" name="camera_image" output="screen"  respawn="true">
+   <param name="ns" value="single_asus_robot" />
+ </node>
+</launch>
+

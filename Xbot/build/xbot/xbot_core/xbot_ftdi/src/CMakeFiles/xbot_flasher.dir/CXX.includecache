@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/howe/Xbot/src/xbot/xbot_core/xbot_ftdi/include/xbot_ftdi/scanner.hpp
+vector
+-
+map
+-
+usb.h
+-
+stdint.h
+-
+
+/home/howe/Xbot/src/xbot/xbot_core/xbot_ftdi/include/xbot_ftdi/writer.hpp
+cstring
+-
+ftdi.h
+-
+
+/home/howe/Xbot/src/xbot/xbot_core/xbot_ftdi/src/flasher.cpp
+iostream
+-
+../include/xbot_ftdi/scanner.hpp
+/home/howe/Xbot/src/xbot/xbot_core/xbot_ftdi/include/xbot_ftdi/scanner.hpp
+../include/xbot_ftdi/writer.hpp
+/home/howe/Xbot/src/xbot/xbot_core/xbot_ftdi/include/xbot_ftdi/writer.hpp
+
