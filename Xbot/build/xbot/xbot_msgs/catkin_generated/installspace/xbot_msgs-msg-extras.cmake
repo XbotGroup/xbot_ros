@@ -1,2 +1,0 @@
-set(xbot_msgs_MESSAGE_FILES "msg/SensorState.msg;msg/BumperEvent.msg;msg/PowerSystemEvent.msg;msg/CliffEvent.msg;msg/RobotStateEvent.msg;msg/ControllerInfo.msg;msg/WheelDropEvent.msg;msg/DockInfraRed.msg;msg/KeyboardInput.msg;msg/MotorPower.msg;msg/ScanAngle.msg;msg/AutoDockingAction.msg;msg/AutoDockingActionGoal.msg;msg/AutoDockingActionResult.msg;msg/AutoDockingActionFeedback.msg;msg/AutoDockingGoal.msg;msg/AutoDockingResult.msg;msg/AutoDockingFeedback.msg")
-set(xbot_msgs_SERVICE_FILES "")

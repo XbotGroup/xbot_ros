@@ -1,2 +1,0 @@
-amcl_odom:camera_image:dynamic_3d_view:machine:marker:nav_staff:obstacle_warning:simple_voice:simulation:tasks:xbot/xbot:xbot/xbot_bringup:xbot/xbot_core/xbot_core:xbot/xbot_core/xbot_dock_drive:xbot/xbot_core/xbot_driver:xbot/xbot_core/xbot_ftdi:xbot/xbot_description:xbot/xbot_keyop:xbot/xbot_msgs:xbot/xbot_node:xbot/xbot_safety_controller:xbot_cruise
--DCATKIN_DEVEL_PREFIX=/home/howe/Xbot/devel -DCMAKE_INSTALL_PREFIX=/home/howe/Xbot/install -G Unix Makefiles

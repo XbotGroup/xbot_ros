@@ -1,8 +1,0 @@
-prefix=/home/howe/Xbot/install
-
-Name: simple_voice
-Description: Description of simple_voice
-Version: 0.0.0
-Cflags: 
-Libs: -L/home/howe/Xbot/install/lib -lsimple_voice
-Requires: rospy

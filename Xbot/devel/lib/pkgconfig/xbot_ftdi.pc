@@ -1,8 +1,0 @@
-prefix=/home/howe/Xbot/devel
-
-Name: xbot_ftdi
-Description: Description of xbot_ftdi
-Version: 0.6.4
-Cflags: -I/home/howe/Xbot/src/xbot/xbot_core/xbot_ftdi/include
-Libs: -L/home/howe/Xbot/devel/lib 
-Requires: ecl_command_line

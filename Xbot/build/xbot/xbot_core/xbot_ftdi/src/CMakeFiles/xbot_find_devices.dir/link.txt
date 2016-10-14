@@ -1,1 +1,0 @@
-/usr/bin/c++       CMakeFiles/xbot_find_devices.dir/find_devices.cpp.o  -o /home/howe/Xbot/devel/lib/xbot_ftdi/xbot_find_devices -rdynamic -lusb 

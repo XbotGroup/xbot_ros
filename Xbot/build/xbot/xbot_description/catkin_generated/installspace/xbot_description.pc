@@ -1,8 +1,0 @@
-prefix=/home/howe/Xbot/install
-
-Name: xbot_description
-Description: Description of xbot_description
-Version: 0.0.0
-Cflags: 
-Libs: -L/home/howe/Xbot/install/lib 
-Requires: 

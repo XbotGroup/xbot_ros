@@ -1,1 +1,0 @@
-/usr/bin/c++       CMakeFiles/xbot_ftdi_scan.dir/ftdi_scan.cpp.o  -o /home/howe/Xbot/devel/lib/xbot_ftdi/xbot_ftdi_scan -rdynamic -lftdi 

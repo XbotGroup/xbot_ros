@@ -1,8 +1,0 @@
-prefix=/home/howe/Xbot/devel
-
-Name: xbot_node
-Description: Description of xbot_node
-Version: 0.6.7
-Cflags: -I/home/howe/Xbot/src/xbot/xbot_node/include
-Libs: -L/home/howe/Xbot/devel/lib -lxbot_ros -lxbot_nodelet
-Requires: rospy roscpp nodelet pluginlib tf angles geometry_msgs sensor_msgs nav_msgs std_msgs xbot_msgs xbot_driver xbot_keyop xbot_safety_controller ecl_exceptions ecl_sigslots ecl_streams ecl_threads

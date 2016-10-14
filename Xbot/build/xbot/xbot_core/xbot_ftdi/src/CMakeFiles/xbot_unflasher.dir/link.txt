@@ -1,1 +1,0 @@
-/usr/bin/c++       CMakeFiles/xbot_unflasher.dir/unflasher.cpp.o  -o /home/howe/Xbot/devel/lib/xbot_ftdi/xbot_unflasher -rdynamic -lusb -lftdi 

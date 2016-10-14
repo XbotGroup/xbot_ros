@@ -1,8 +1,0 @@
-prefix=/home/howe/Xbot/devel
-
-Name: xbot_dock_drive
-Description: Description of xbot_dock_drive
-Version: 0.6.4
-Cflags: -I/home/howe/Xbot/src/xbot/xbot_core/xbot_dock_drive/include
-Libs: -L/home/howe/Xbot/devel/lib -lxbot_dock_drive
-Requires: ecl_threads ecl_geometry ecl_linear_algebra

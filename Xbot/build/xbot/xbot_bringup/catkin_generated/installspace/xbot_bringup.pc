@@ -1,8 +1,0 @@
-prefix=/home/howe/Xbot/install
-
-Name: xbot_bringup
-Description: Description of xbot_bringup
-Version: 0.0.0
-Cflags: -I/home/howe/Xbot/install/include
-Libs: -L/home/howe/Xbot/install/lib -lxbot_bringup
-Requires: message_runtime roscpp rospy std_msgs geometry_msgs visualization_msgs

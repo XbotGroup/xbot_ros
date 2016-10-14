@@ -1,8 +1,0 @@
-prefix=/home/howe/Xbot/devel
-
-Name: obstacle_warning
-Description: Description of obstacle_warning
-Version: 0.0.0
-Cflags: 
-Libs: -L/home/howe/Xbot/devel/lib 
-Requires: 

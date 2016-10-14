@@ -1,8 +1,0 @@
-prefix=/home/howe/Xbot/install
-
-Name: xbot_dock_drive
-Description: Description of xbot_dock_drive
-Version: 0.6.4
-Cflags: -I/home/howe/Xbot/install/include
-Libs: -L/home/howe/Xbot/install/lib -lxbot_dock_drive
-Requires: ecl_threads ecl_geometry ecl_linear_algebra
