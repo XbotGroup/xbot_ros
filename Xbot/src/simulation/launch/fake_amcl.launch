@@ -1,20 +1,33 @@
 <launch>
 
   <param name="use_sim_time" value="false" />
-
+  <arg name="custom_param_file" default="$(find nav_staff)/param/dummy.yaml"/>
+  
   <!-- Set the name of the map yaml file: can be overridden on the command line. -->
-  <arg name="map" default="$(find nav_staff)/map/5-12.yaml"/>
+  <arg name="map_path" default="$(find nav_staff)/map/"/>
+  <arg name="map_file" default="5-12.yaml"/>
+  <arg name="frame_id" default="map"/>
+  <arg name="use_map_topic" default="/map"/>
+
 
   <!-- Run the map server with the desired map -->
-  <node name="simulation" pkg="simulation" type="ReadMap.py" args="$(find nav_staff)/map/$(arg map)">
-   <param name="map_file"   value="$(arg map)"/>
+  <node name="map_server" pkg="simulation" type="ReadMap.py" >
+   <param name="map_path"   value="$(arg map_path)"/>
+   <param name="map_file"   value="$(arg map_file)"/>
+   <param name="frame_id"   value="$(arg frame_id)"/>
+   <param name="use_map_topic"   value="$(arg use_map_topic)"/>
   </node>
-
-  <!-- The move_base node -->
-  <include file="$(find simulation)/launch/fake_move_base.launch" />
+  
+  <!-- The fake move_base node -->
+  <!--<include file="$(find simulation)/launch/fake_move_base.launch" />-->
+  
+  <!--The real move base node-->
+  <include file="$(find nav_staff)/launch/xml/move_base_xu.launch.xml">
+   <arg name="custom_param_file"       value="$(arg custom_param_file)"/>
+  </include>
   
   <!-- Run fake localization compatible with AMCL output -->
-  <node pkg="fake_localization" type="fake_localization" name="fake_localization" output="screen" />
+  <node pkg="fake_localization" type="fake_localization" name="fake_amcl" output="screen" />
 
   <!-- For fake localization we need a static transform between /odom and /map -->
   <node pkg="tf" type="static_transform_publisher" name="map_odom_broadcaster" args="0 0 0 0 0 0 /map /odom 100" />

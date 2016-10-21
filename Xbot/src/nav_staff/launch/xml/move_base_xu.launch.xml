@@ -8,9 +8,12 @@
  <arg name="odom_topic" default="odom" />
  <arg name="laser_topic" default="scan" />
  <arg name="custom_param_file" default="$(find nav_staff)/param/dummy.yaml"/>
+ <arg name="recovery_behavior_enabled" default='false' />
+ <arg name="clearing_rotation_allowed" default='false' />
+ <arg name="planner_frequency" default='1.0' />
+
 
  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
-
  <!--setting param.yaml-->
   <rosparam file="$(find nav_staff)/param/costmap_params.yaml" command="load" ns="global_costmap" />
   <rosparam file="$(find nav_staff)/param/costmap_params.yaml" command="load" ns="local_costmap" />
@@ -19,7 +22,7 @@
   <rosparam file="$(find nav_staff)/param/global_costmap.yaml" command="load" />
 
   <rosparam file="$(find nav_staff)/param/dwa_planner.yaml" command="load" />
-  <rosparam file="$(find nav_staff)/param/move_base_xu.yaml" command="load" />
+  <!--<rosparam file="$(find nav_staff)/param/move_base_xu.yaml" command="load" />-->
   <rosparam file="$(find nav_staff)/param/global_planner.yaml" command="load" />
   <rosparam file="$(find nav_staff)/param/navfn_global_planner.yaml" command="load" />
 
@@ -33,9 +36,12 @@
   <param name="local_costmap/global_frame" value="$(arg odom_frame_id)"/>
   <param name="local_costmap/robot_base_frame" value="$(arg base_frame_id)"/>
   <param name="DWAPlannerRos/global_frame_id" value="$(arg odom_frame_id)"/>
-
+  <param name="recovery_behavior_enabled" value="$(arg recovery_behavior_enabled)"/>
+  <param name="clearing_rotation_allowed" value="$(arg clearing_rotation_allowed)"/>
+  <param name="planner_frequency" value="$(arg planner_frequency)"/>
+  
  <!--remap topics-->
-  <remap from="cmd_vel" to="navigation_velocity_smoother/raw_cmd_vel"/>
+  <remap from="cmd_vel" to="/cmd_vel_mux/input/empty"/>
   <remap from="odom" to="$(arg odom_topic)"/>
   <remap from="scan" to="$(arg laser_topic)"/>
  </node>

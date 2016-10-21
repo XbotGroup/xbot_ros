@@ -14,9 +14,9 @@
 
   <arg name="warning_height"                            value='1.5' />
   
-  <arg name="xcorrection"                               default='-0.01' />
+  <arg name="xcorrection"                               default='0.11' />
 
-  <arg name="ycorrection"                               default='-0.13' />
+  <arg name="ycorrection"                               default='-0.06' />
   
   <!--stopmove_edit.py-->  
   <node pkg="obstacle_warning" type="DetectorStopMove.py" name="DetectorStopMove"  output="screen">

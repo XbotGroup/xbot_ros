@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 #coding=utf-8
 """
-rviz 地图编辑软件测试算法用
 
 This programm is tested on kuboki base turtlebot. 
 Copyright (c) Xu Zhihao (Howe).  All rights reserved.
@@ -22,7 +21,7 @@ from geometry_msgs.msg import PoseArray
 from std_msgs.msg import String
 from nav_msgs.msg import MapMetaData 
 from nav_msgs.srv import *
-
+from geometry_msgs.msg import Quaternion
 
 class grid_map():
  def __init__(self):
@@ -31,21 +30,12 @@ class grid_map():
   self.Map =  copy.deepcopy(self.init_map)
   self.start = True
   self.segments = 50
-  """#try:
-   #rospy.Subscriber(self.root_topic+'/projection', PointStamped, self.MessPosition, queue_size=1)
-   #rospy.Subscriber(self.root_topic+'/projection'+'/size', String, self.Size, queue_size=1)
-  #except:"""
+
   rospy.Subscriber(self.root_topic+'/projection', PoseArray , self.MessPoses, queue_size=1)
   rospy.Timer(rospy.Duration(15), self.Reload)
   rospy.Timer(rospy.Duration(0.5), self.Clear)
   self.AMCLMapSever()
   rospy.spin()
-  
- """def Size(self, data):
-  #print 'data', data
-  with self.locker:
-   self.radiu = data.data
-  #print 'Size', self.radiu"""
  
  def AMCLMapSever(self):
   with self.locker: 
@@ -66,44 +56,13 @@ class grid_map():
      num = maplib.position_num(self.Map, pose.position)
      self.Map.data[num] = 100
    self.map_pub.publish(self.Map)
-   
- """def MessPosition(self, position):
-  with self.locker: 
-   num = maplib.position_num(self.Map, position.point)
-   #print num,len(self.Map.data)#,cmp(self.Map.data, self.init_map.data)
-   self.Map.data = copy.deepcopy(self.init_map.data)
-   #print self.radiu
-   if self.radiu != 'None':
-    self.Map.data[num] = 100 
-    size = int((float(self.radiu)))
-    unit = numpy.pi / self.segments     
-
-   else:
-    print 'default'
-    size = 1
-    size = int(size*10/2)
-    for i in range(size):
-     #self.Map.data[num+i] = 100
-     #self.Map.data[num+i*self.Map.info.width] = 100
-     for j in range(size):
-      self.Map.data[num+i*self.Map.info.width + j] = 100
-      self.Map.data[num+i*self.Map.info.width - j] = 100
-     
-    for i in range(size):
-     #self.Map.data[num-i] = 100
-     #self.Map.data[num-i*self.Map.info.width] = 100
-     for j in range(size):
-      self.Map.data[num-i*self.Map.info.width + j] = 100
-      self.Map.data[num-i*self.Map.info.width - j] = 100
-
-   #print 'MessPosition'
-   self.map_pub.publish(self.Map)"""
+   rospy.loginfo('projection map loaded')
 
  def Reload(self, event):
   with self.locker:
    self.Map.data = copy.deepcopy(self.init_map.data)
    self.map_pub.publish(self.Map)
-   #print 'repub' 
+   print 'repub' 
    self.PubMetadata()
    
  def Clear(self,event):
@@ -111,7 +70,7 @@ class grid_map():
    if self.start:
     self.map_pub.publish(self.init_map)
     self.start = False
-    #print 'clear'
+    print 'clear'
    else:
     self.map_pub.publish(self.Map)
    self.PubMetadata()
@@ -124,60 +83,89 @@ class grid_map():
  def define(self):
   self.locker = Lock()
 
-  if not rospy.has_param('~map_file'):
-   rospy.set_param('~map_file','/home/howe/cafe_robot_single/src/nav_staff/map/')
-  else:
-   self.filename = rospy.get_param('~map_file')
-
-  self.map_pub=rospy.Publisher("/map", OccupancyGrid ,queue_size=1)
-  self.map_metadata=rospy.Publisher("/map_metadata", MapMetaData ,queue_size=1)
-  self.root_topic='/test_obstacles'
-  #self.radiu = numpy.inf
+  if not rospy.has_param('~map_path'):
+   rospy.set_param('~map_path','/home/howe/Xbot/src/nav_staff/map/')
   
+  if not rospy.has_param('~map_file'):
+   rospy.set_param('~map_file','5-12.yaml')
+
   if not rospy.has_param('~frame_id'):
-   rospy.set_param('~frame_id','/map')
-  self.frame_id = rospy.get_param('~frame_id')
+   rospy.set_param('~frame_id','map')
 
   if not rospy.has_param('~use_map_topic'):
    rospy.set_param('~use_map_topic','/map')
 
+   
+  self.origin_orientation = Quaternion()
+  self.origin_orientation.w = -1
+  
+  self.root_topic='/test_obstacles'
+  #self.radiu = numpy.inf
+
+  self.filepath = rospy.get_param('~map_path')
+  self.filename = rospy.get_param('~map_file')
+  self.frame_id = rospy.get_param('~frame_id')
+  self.MapTopic = rospy.get_param('~use_map_topic')
+  
+  self.map_pub=rospy.Publisher(self.MapTopic, OccupancyGrid ,queue_size=1)
+  self.map_metadata=rospy.Publisher("/map_metadata", MapMetaData ,queue_size=1)
   
  def ReadPGMMap(self):
-  (self.image,self.resolution,self.origin,self.load_time) = self.ReadYaml()
-   
-  f=Image.open(self.filename+self.image)
-  (width,height)=f.size
+  (self.image, self.resolution, self.origin_position, self.reverse, self.occupied_thresh, self.free_thresh, self.load_time) = self.ReadYaml()
+  self.occupied_thresh = int(self.occupied_thresh *  255)
+  self.free_thresh = int(self.free_thresh * 255)
+  
+  print self.free_thresh,self.occupied_thresh 
+  
+  f=Image.open(self.filepath + self.image)
+  (width, height) = f.size
   GridMap=numpy.array(f)
   
   Map=OccupancyGrid()
-  Map.header.frame_id=self.frame_id
-  Map.info.width=width
-  Map.info.height=height
-  Map.info.resolution=self.resolution
-  Map.info.origin.position.x=self.origin[0]
-  Map.info.origin.position.y=self.origin[1]
-  Map.info.origin.position.z=self.origin[2]
-  Map.info.origin.orientation.w=1
-  #print 'height',height,'width',width
+  Map.header.frame_id = self.frame_id
+  Map.info.width = width
+  Map.info.height = height
+  Map.info.resolution = round(self.resolution, 3)
+  Map.info.origin.position.x = self.origin_position[0]
+  Map.info.origin.position.y = self.origin_position[1]
+  Map.info.origin.position.z = self.origin_position[2]
+  Map.info.origin.orientation = self.origin_orientation
+  rospy.loginfo( 'map height: ' + str(height) + '     map width:' + str(width))
   for i in range(height):
-   data=GridMap[height-i-1]
+   data = GridMap[height-i-1]
    for j in data:
-    res=j==[0,0,0]
-    if res.all():
-     Map.data.append(100)
-    else:
+    resl = j < [self.free_thresh, self.free_thresh, self.free_thresh]
+    res = j > [self.occupied_thresh, self.occupied_thresh, self.occupied_thresh]
+    if res.all() and not self.reverse:
      Map.data.append(0)
+    elif resl.all() and not self.reverse:
+     Map.data.append(100)  
+    else:
+     print 1
+     Map.data.append(50)
   #print Map.info
+  rospy.loginfo( 'Map read' )
+  
+   
+  
   return Map
    
  def ReadYaml(self):
-  with open(self.filename+'office_map_manual.yaml', 'rb') as f:
-   data = yaml.load(f)
+  try:
+   with open(self.filepath + self.filename, 'rb') as f:
+    data = yaml.load(f)
+  except:
+   rospy.set_param('~map_path','/home/howe/Xbot/src/nav_staff/map/')
+   rospy.set_param('~map_file','5-12.yaml')
+   self.ReadYaml()
   image = data['image']
   resolution = data['resolution']
   origin = data['origin']
+  reverse = data['negate']
+  occupied_thresh = data['occupied_thresh']
+  free_thresh = data['free_thresh']
   load_time = rospy.Time.now()
-  return (image,resolution,origin,load_time)
+  return (image, resolution, origin, reverse, occupied_thresh, free_thresh, load_time)
   
    
 if __name__=='__main__':

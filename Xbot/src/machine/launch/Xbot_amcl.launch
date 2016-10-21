@@ -16,12 +16,11 @@
    <arg name="initial_pose_x"   value="$(arg initial_pose_x)"/>
    <arg name="initial_pose_y"   value="$(arg initial_pose_y)"/>
    <arg name="initial_pose_a"   value="$(arg initial_pose_a)"/>
-
   </include>
 
   <!--move base-->
   <include file="$(find nav_staff)/launch/xml/move_base_xu.launch.xml">
-   <arg name="custom_param_file"        value="$(arg custom_param_file)"/>
+   <arg name="custom_param_file"       value="$(arg custom_param_file)"/>
   </include>
     
 </launch>

@@ -1,6 +1,6 @@
-image: 5-12.png
-resolution: 0.050000
-origin: [-5.87311236235758, -6.082926101916, 0.000000]
+image: xlab-office.pgm
+resolution: 0.05
+origin: [-6.56, -2.7, 0.000000]
 negate: 0
 occupied_thresh: 0.65
 free_thresh: 0.196

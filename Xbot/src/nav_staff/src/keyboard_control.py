@@ -42,8 +42,8 @@ class multi_keybroad_handle():
 		',':(-1,0,0,0),
 		
 		'I':(1,0,0,0),
-		'J':(0,1,0,0),
-		'L':(0,-1,0,0),
+		'J':(0,0,0,1),
+		'L':(0,0,0,-1),
 		'K':(0,0,0,0)
 		}
 
@@ -75,7 +75,7 @@ class multi_keybroad_handle():
      x = self.robot_control[key][0]*speed
      y = self.robot_control[key][1]*speed
      z = self.robot_control[key][2]*speed
-     th = self.robot_control[key][3]
+     th = self.robot_control[key][3]*speed
      self.cmd.linear.x = x
      self.cmd.angular.z = th
      if not status:
@@ -87,7 +87,7 @@ class multi_keybroad_handle():
 
     self.pub.publish(self.cmd)
     
-    rospy.sleep(0.3)
+    #rospy.sleep(0.1)
     #if self.cmd != Twist():
      #self.cmd = Twist()
      #self.pub.publish(self.cmd)

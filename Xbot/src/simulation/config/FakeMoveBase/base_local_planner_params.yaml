@@ -1,4 +1,4 @@
-# Robot Configuration Parameters - XBOT
+# Robot Configuration Parameters - Kobuki
  max_vel_x: 0.3
  min_vel_x: 0.0
 
@@ -40,5 +40,5 @@
  publish_cost_grid_pc: true
  global_frame_id: odom
 
- holonomic_robot: true
+ #holonomic_robot: true
 
