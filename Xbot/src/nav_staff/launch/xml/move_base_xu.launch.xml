@@ -45,4 +45,30 @@
   <remap from="odom" to="$(arg odom_topic)"/>
   <remap from="scan" to="$(arg laser_topic)"/>
  </node>
+ 
+ <!--base controller-->
+ <arg name="PlanTopic" default='/move_base/NavfnROS/plan' />
+ <arg name="OdomTopic" default='/turtlebot_position_in_map' />
+ <arg name="MotionTopice" default='/cmd_vel_mux/input/navi' />
+ 
+ <arg name="PathBias" default='0.01' />
+ <arg name="MaxLinearSP" default='0.5' />
+ <arg name="MaxAngularSP" default='0.4' />
+ <arg name="AngularBias" default='0.3' />
+ <arg name="AngularFree" default='0.1745' />
+ 
+ <node pkg="nav_staff" type="base_controller.py" respawn="true" name="BaseController_X" output="screen">
+  <param name="PlanTopic" value="$(arg PlanTopic)"/>
+  <param name="OdomTopic" value="$(arg OdomTopic)"/>
+  <param name="MotionTopice" value="$(arg MotionTopice)"/>
+  
+  <param name="PathBias" value="$(arg PathBias)"/>
+  <param name="MaxLinearSP" value="$(arg MaxLinearSP)"/>
+  <param name="MaxAngularSP" value="$(arg MaxAngularSP)"/>
+  <param name="AngularBias" value="$(arg AngularBias)"/>
+  <param name="AngularFree" value="$(arg AngularFree)"/>
+  
+ </node>
+ 
+
 </launch>
