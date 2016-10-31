@@ -57,7 +57,7 @@
  <arg name="AngularBias" default='0.3' />
  <arg name="AngularFree" default='0.1745' />
  
- <node pkg="nav_staff" type="base_controller.py" respawn="true" name="BaseController_X" output="screen">
+ <!--<node pkg="nav_staff" type="base_controller.py" respawn="true" name="BaseController_X" output="screen">
   <param name="PlanTopic" value="$(arg PlanTopic)"/>
   <param name="OdomTopic" value="$(arg OdomTopic)"/>
   <param name="MotionTopice" value="$(arg MotionTopice)"/>
@@ -68,7 +68,7 @@
   <param name="AngularBias" value="$(arg AngularBias)"/>
   <param name="AngularFree" value="$(arg AngularFree)"/>
   
- </node>
+ </node>-->
  
 
 </launch>
