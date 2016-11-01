@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""real-time reg 不用存.wav文件，直接识别文件的话语发布服务
+"""
 Copyright (c) 2016 Xu Zhihao (Howe).  All rights reserved.
 This program is free software; you can redistribute it and/or modify
 This programm is tested on kuboki base turtlebot."""

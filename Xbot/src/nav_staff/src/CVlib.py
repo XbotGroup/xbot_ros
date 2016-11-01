@@ -23,6 +23,21 @@ def GetAngle(quat):
  rot = PyKDL.Rotation.Quaternion(quat.x, quat.y, quat.z, quat.w)
  return rot.GetRPY()[2]
 
+
+def GoalOrientation(self, theta):
+ orientation = Quaternion() 
+  
+ if -numpy.pi < theta < -numpy.pi*2.0/3.0:
+  orientation.z = -numpy.sin(theta/2.0)
+  orientation.w = -numpy.cos(theta/2.0)
+   
+ else:
+  orientation.z = numpy.sin(theta/2.0)
+  orientation.w = numpy.cos(theta/2.0)
+   
+ return orientation
+
+
 class SLF:
  def __init__(self):
   self.define()
@@ -118,6 +133,7 @@ class SLF:
    return False
 
 
+  
 
 
 
