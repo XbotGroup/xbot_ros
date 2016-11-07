@@ -75,7 +75,7 @@ class multi_keybroad_handle():
      x = self.robot_control[key][0]*speed
      y = self.robot_control[key][1]*speed
      z = self.robot_control[key][2]*speed
-     th = self.robot_control[key][3]*speed*0.1
+     th = self.robot_control[key][3]*speed
      self.cmd.linear.x = x
      self.cmd.angular.z = th
      if not status:

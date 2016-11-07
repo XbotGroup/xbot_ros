@@ -126,7 +126,7 @@ class Plantest():
   self.path = copy.deepcopy(PlanPath.poses)
   self.num = 10 
   if len(self.path) > self.num:#int( 0.2 * len(self.path))
-   self.path[self.num].pose.position.z = 2
+   self.path[self.num].pose.position.z = 1.4
    
    self.PlotLines(PlanPath.poses, self.num) 
 
@@ -152,7 +152,7 @@ class Plantest():
 
   else:
    # plan size less len 2
-   self.path[0].pose.position.z = 2
+   self.path[0].pose.position.z = 1.4
    
    self.robot = self.visual_test([self.path[0].pose.position, self.odom.position], Marker.POINTS, [copy.deepcopy(self.color),copy.deepcopy(self.color)], self.scale)
    
@@ -243,7 +243,7 @@ class Plantest():
    point_marker.scale.y = scale.y / 2
    point_marker.scale.z = scale.z / 2  
    point_marker.pose = data
-   point_marker.pose.position.z = 2.5
+   point_marker.pose.position.z = 1.5
    point_marker.color = copy.deepcopy(color)
    point_marker.color.g=2.0
    point_marker.lifetime=rospy.Duration(0.3)
