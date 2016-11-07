@@ -138,10 +138,9 @@ class BaseController:
   self.Arrivedplog = True
   self.Arrivedolog = True
   self.CurrentPubGoal = self.CurrentGoal
-  print 'self.Hold', self.Hold
+  #print 'self.Hold', self.Hold
   if self.Hold:
    if self.ArrivedGoal:
-    #self.Goals.get()
     rospy.loginfo('ArrivedGoal: restore original goal')
     if self.Goals.qsize > 0:
      rospy.loginfo('restore original goal')
@@ -185,13 +184,14 @@ class BaseController:
 
 
  def PlanCB(self, PlanPath):
-  #with self.locker:
   self.path = []
   #self.path = copy.deepcopy(PlanPath.poses)
   
   # check if plan start from current position if yes copy path, otherwise set new goal
-  if self.PositionCheck(PlanPath.poses[0], self.CurrentOdom): 
+  if self.PositionCheck(PlanPath.poses[0], self.CurrentOdom):    
    self.path = copy.deepcopy(PlanPath.poses)
+   print 'PositionCheck pass', len(self.path)
+   self.Hold = False
   else:
    if len(PlanPath.poses) > 0:
     new_goal = PointStamped()
@@ -250,8 +250,7 @@ class BaseController:
     path = copy.deepcopy(self.path)
     if len(self.path) > self.num :
      cmd = self.DiffControl(odom, path[self.num].pose, path, cmd) 
-    else: 
-     # situation of len(self.path) < self.num
+    else: # situation of len(self.path) < self.num
      if not self.ArrivedPosition(odom, path):
       if self.Arrivedplog:
        self.Arrivedplog = False
